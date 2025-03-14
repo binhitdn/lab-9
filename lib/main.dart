@@ -161,7 +161,7 @@ class _LocationScreenState extends State<LocationScreen> {
                             builder: (context) => const CityScreen()),
                       );
                       if (typedName != null) {
-                        String apiKey = 'YOUR_API_KEY'; 
+                        String apiKey = 'e9c748dffdfbea92134d44cd14a3b33a'; 
                         var url =
                             'https://api.openweathermap.org/data/2.5/weather?q=$typedName&appid=$apiKey&units=metric';
                         http.Response response =
