@@ -42,14 +42,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   Future<void> getLocationData() async {
     try {
-      // Yêu cầu cấp quyền và lấy vị trí hiện tại
+
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.low);
       latitude = position.latitude;
       longitude = position.longitude;
 
-      // Gọi API thời tiết (sử dụng OpenWeatherMap)
-      String apiKey = 'e9c748dffdfbea92134d44cd14a3b33a'; // <-- Thay bằng API Key của bạn
+      String apiKey = 'e9c748dffdfbea92134d44cd14a3b33a'; 
       var url =
           'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric';
       http.Response response = await http.get(Uri.parse(url));
@@ -63,7 +62,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           ),
         );
       } else {
-        // Xử lý lỗi khi không lấy được dữ liệu
+
         print('Lỗi khi tải dữ liệu thời tiết');
       }
     } catch (e) {
@@ -122,7 +121,7 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Nền gradient cho giao diện chính
+
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -136,7 +135,7 @@ class _LocationScreenState extends State<LocationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              // Thanh trên: nút điều hướng
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -144,7 +143,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     icon: const Icon(Icons.near_me,
                         color: Colors.white, size: 30),
                     onPressed: () async {
-                      // Lấy lại vị trí hiện tại
+
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const LoadingScreen()),
@@ -155,14 +154,14 @@ class _LocationScreenState extends State<LocationScreen> {
                     icon: const Icon(Icons.location_city,
                         color: Colors.white, size: 30),
                     onPressed: () async {
-                      // Điều hướng đến màn hình tìm kiếm thành phố
+
                       var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const CityScreen()),
                       );
                       if (typedName != null) {
-                        String apiKey = 'YOUR_API_KEY'; // Thay bằng API Key của bạn
+                        String apiKey = 'YOUR_API_KEY'; 
                         var url =
                             'https://api.openweathermap.org/data/2.5/weather?q=$typedName&appid=$apiKey&units=metric';
                         http.Response response =
@@ -176,7 +175,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                 ],
               ),
-              // Nội dung chính: hiển thị nhiệt độ và thông tin thời tiết
+
               Column(
                 children: [
                   Text(
@@ -200,7 +199,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                 ],
               ),
-              // Chân màn hình
+
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: Text(
